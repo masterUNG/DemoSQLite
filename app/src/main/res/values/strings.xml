@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Demo SQLite</string>
+    <string name="title_toolbar">แอพของอึ่ง</string>
 </resources>
