@@ -23,7 +23,20 @@ public class MainActivity extends AppCompatActivity {
 //        Create Toolbar
         createToolbar();
 
+//        Add Fragment
+        if (checkSQLite()) {
+//            Have Database
+            getSupportFragmentManager().beginTransaction().add(R.id.contentFragmentMain, new MainFragment()).commit();
+        } else {
+//            No Database
+            getSupportFragmentManager().beginTransaction().add(R.id.contentFragmentMain, new FormFragment()).commit();
+        }
+
     }   // Main Method
+
+    private boolean checkSQLite() {
+        return false;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
