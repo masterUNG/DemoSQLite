@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Demo SQLite</string>
     <string name="title_toolbar">แอพของอึ่ง</string>
+
+    <string name="open">Open Drawer</string>
+    <string name="close">Close Drawer</string>
+
 </resources>
