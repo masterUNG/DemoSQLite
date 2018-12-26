@@ -8,4 +8,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="name">ชื่อ</string>
+    <string name="surname">นามสกุล</string>
+    <string name="male">ชาย</string>
+    <string name="female">หญิง</string>
+    <string name="age">อายุ</string>
+    <string name="allergic">อาการแพ้ยา</string>
+    <string name="detail">รายละเอียดอาการ</string>
+
 </resources>
