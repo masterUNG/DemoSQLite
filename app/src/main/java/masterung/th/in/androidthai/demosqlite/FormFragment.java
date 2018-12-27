@@ -1,15 +1,18 @@
 package masterung.th.in.androidthai.demosqlite;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -25,7 +28,7 @@ public class FormFragment extends Fragment {
 
     //    Explicit
     private String nameString, surnameString, genderString,
-            ageString, allergicString, detailString;
+            ageString, allergicString = "0", detailString;
     private boolean ageABoolean = true; // true Not Choose Age
 
     public FormFragment() {
@@ -45,7 +48,24 @@ public class FormFragment extends Fragment {
 //        Age Controller
         ageController();
 
+//        Allergic Controller
+        allergicController();
+
     }   // Main Method
+
+    private void allergicController() {
+        final CheckBox checkBox = getView().findViewById(R.id.chbAllergic);
+        checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkBox.isChecked()) {
+                    allergicString = "1";
+                } else {
+                    allergicString = "0";
+                }
+            }
+        });
+    }
 
     private void ageController() {
 
@@ -124,11 +144,44 @@ public class FormFragment extends Fragment {
                     myAlert.normalDialog("Non Gender", "Please Choose Male or Female");
                 } else if (ageABoolean) {
                     myAlert.normalDialog("Non Choose Age", "Please Choose Age");
+                } else {
+                    confirmData();
                 }
 
 
             }   // onClick
         });
+    }
+
+    private void confirmData() {
+
+        String[] genderStrings = new String[]{"ชาย", "หญิง"};
+        String[] allergisStrings = new String[]{"ไม่แพ้", "แพ้"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setCancelable(false);
+        builder.setTitle("Confirm Data");
+        builder.setMessage("Name ==> " + nameString + "\n" +
+                "Surname ==> " + surnameString + "\n" +
+                "Gender ==> " + genderStrings[Integer.parseInt(genderString)] + "\n" +
+                "Age ==> " + ageString + "\n" +
+                "Allergis ==> " + allergisStrings[Integer.parseInt(allergicString)]);
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+
+
     }
 
     @Override
